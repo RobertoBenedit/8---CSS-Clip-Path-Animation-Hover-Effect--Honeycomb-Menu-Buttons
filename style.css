@@ -1,0 +1,110 @@
+:root {
+    --color-one: #fff;
+    --color-two: #ff0000;
+    --color-three: #000;
+    --color-four: #29a1aa;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.container {
+    width: 200px;
+    position: relative;
+    margin: 50px auto;
+    font-family: impact, "Arial Narrow Bold", sans-serif;
+}
+.button {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 200px;
+}
+.button:nth-of-type(2) {
+    top: -40px;
+    left: 100px;
+}
+.button:nth-of-type(3) {
+    top: -80px;
+    left: 0px;
+}
+.button:nth-of-type(4) {
+    top: -120px;
+    left: 100px;
+}
+.button p {
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(0);
+    color: var(--color-one);
+    z-index: 10;
+    font-size: 40px;
+    transition: 0.3s cubic-bezier(0, 2.17, 0.83, 1.36) 0.3s;
+}
+.button:hover p {
+    transform: translate(-50%, -50%) rotate(-27deg);
+    font-size: 0;
+    transition: 0.2s;
+    opacity: 0;
+}
+.button::before {
+    content: "";
+    width: 200px;
+    height: 200px;
+    background-color: var(--color-two);
+    position: absolute;
+    top: 0;
+    left: 0;
+    clip-path: polygon(0 25%, 50% 0, 50% 100%, 0 75%);
+    transition: clip-path 0.2s 0.5s, width 0.2s 0.2s, left 0.2s 0.2s;
+}
+.button:nth-child(odd):hover::before {
+    width: 0;
+    left: 100px;
+    transition: clip-path 0.2s, width 0.2s 0.2s, left 0.2s 0.2s;
+    clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
+}
+.button::after {
+    content: "";
+    width: 200px;
+    height: 200px;
+    background-color: var(--color-three);
+    position: absolute;
+    top: 0;
+    left: -1px;
+    clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%);
+    transition: clip-path 0.2s 0.5s, width 0.2s 0.2s, left 0.2s 0.2s;
+}
+.button:nth-child(even):hover::after {
+    width: 0;
+    left: 99px;
+    transition: clip-path 0.2s, width 0.2s 0.2s, left 0.2s 0.2s;
+    clip-path: polygon(50% 0%, 100% 0, 100% 100%, 50% 100%);
+}
+.button span {
+    font-size: 252px;
+    position: absolute;
+    left: 100px;
+    height: 200px;
+    display: block;
+    line-height: 200px;
+    transform: rotateY(90deg);
+    transform-origin: left;
+    transition: 0.5s;
+    overflow: hidden;
+}
+.button:nth-child(odd) span {
+    right: 100px;
+    left: auto;
+    transform-origin: right;
+}
+.button:hover span {
+    width: auto;
+    transition: 0.5s 0.2s;
+    transform: rotateY(0);
+    color: var(--color-four);
+}
